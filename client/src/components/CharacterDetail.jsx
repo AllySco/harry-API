@@ -5,26 +5,25 @@ class CharacterDetail extends React.Component {
   constructor( props ) {
     super( props )
     this.state = {
-      showImage: true
+      showImage: false
     }
     this.handleButtonClick = this.handleButtonClick.bind(this)
   }
 
   handleButtonClick() {
-    this.setState( { showImage: true } )
+    this.setState( { showImage: !this.state.showImage } )
 
 
   }
 
   render() {
+    let image = ""
     if(!this.props.character) return null
 
-      if (this.showImage) { 
-        const image = <img src= { this.props.character.image} width="200" height ="200"/>
-      } else {
-        const image = ""
+      if (this.state.showImage) { 
+        image = <img src= { this.props.character.image} width="200" height ="200"/>
       }
-      
+
       return (
         <div>
         <h3>
@@ -37,8 +36,8 @@ class CharacterDetail extends React.Component {
         <li>Eye colour: {this.props.character.eyeColour}</li>
         <li>Hair colour: {this.props.character.hairColour}</li>
         </ul>
-        <button onClick={ this.handleButtonClick }> Click me yo</button>
-        {this.props.image}
+        <button onClick={ this.handleButtonClick }> MugShot Toggle</button>
+        {image}
 
         </div>
         )
